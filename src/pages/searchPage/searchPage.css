@@ -1,0 +1,82 @@
+.SearchPage{
+     position: relative;
+    height: 100%;
+    width: 100%;
+    
+    
+}
+.main{
+    position: absolute;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     opacity: 0;
+     animation: fadeInAnimation 1s ease-in forwards;
+     z-index: 1;
+    
+
+}
+.main img{
+    height: 200px;
+    margin: auto;
+}
+.main h2{
+    width: 30%;
+    align-items: center;
+    color: white;
+    text-align: center;
+      margin: auto;
+}
+.serchMain{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+}
+.video{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeInAnimation 1s ease-in forwards;
+}
+
+@media screen and (max-width : 720px) {
+
+    h2{
+        font-size: 15px;
+    }
+    .video{
+     height: 100vh;
+    width: 100%;
+    position: absolute;
+    object-fit:cover;
+    
+
+}
+.main img{
+    height: 100px;
+   
+}
+
+
+}
+.serchMain{
+    width: 80%;
+}
+
+
+
+@keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px); 
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+  }

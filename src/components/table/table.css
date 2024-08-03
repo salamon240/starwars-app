@@ -1,0 +1,77 @@
+.wrapper {
+  width: min(900px, 100% - 1rem);
+  margin-inline: auto;
+  z-index: 2;
+  
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: gold;
+  
+}
+th,
+.capton {
+  padding: 1rem;
+  text-align: left;
+  overflow: auto;
+
+}
+td {
+  padding: 1rem;
+  border: 1px solid lightgray;
+}
+.capton {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+}
+th {
+  background-color: gold;
+}
+tr {
+  background-color: white;
+  border: 1px solid lightgray;
+}
+.btn {
+  display: flex;
+}
+.tablebtn {
+  padding: 10px 20px 10px 20px;
+  background-color: gold;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.tablebtn:hover {
+  background-color: black;
+  color: gold;
+}
+.tatactiv {
+  display: none;
+}
+@media screen and (max-width: 890px) {
+  th {
+    display: none;
+  }
+  td {
+    display: block;
+    padding:0.5rem 1rem ;
+  }
+  td::before {
+    content: attr(data-cell) "  ";
+    font-weight: 700;
+    text-transform: capitalize;
+    background-color: gold;
+  }
+  .tablebtn {
+    margin-bottom: 2rem;
+  }
+  tr {
+    border: none;
+  }
+}
