@@ -57,11 +57,9 @@ function Categories() {
   console.log(searchData)
   return (
     <div className="categoreis">
-      <img className="containerImag" src={titelImage} alt="" />
        {!loadin?<Loding/>:(
 
       <div className="main_cat">
-        <img className="containerImag" src={titelImage} alt="" />
         {fomedis ? (
           <button
             className="createBtn btnactiv"
@@ -74,7 +72,7 @@ function Categories() {
             Creat new data
           </button>
         )}
-
+             
         
         <Formes
           categoryData={[]}

@@ -65,7 +65,7 @@ function Profile() {
     <div className='Profile'>
       
     <div className="mainProfile">
-      <h1>{categoris}</h1>
+      <h1 className="proH1">{categoris}</h1>
       <div className="imgeProfil">
         <img className='imagpro' src={imageUrl} alt=""  />
       </div>
