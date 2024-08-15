@@ -3,14 +3,15 @@ import { fetchAllViewResults } from "./../../api/ViewAll";
 import { useLocation } from "react-router-dom";
 import Table from "../../components/table/Table";
 import { FetchFilme, FetchPeople, FetchPlanets } from "../../api/categorisApi";
-import { Filme, Pepole, Planet } from "../../components/interface/interface";
 import Formes from "../../components/frome/Formes";
 import "./categories.css";
 import titelImage from "../../images/josue-as-_nprTIIwSk4-unsplash.jpg";
 import Loding from "../../components/loding/Loding";
+import { Pepole, Filme, Planet } from "../../common/types/interface";
 
 type CategoryData = Pepole[] | Filme[] | Planet[];
 
+// TODO : Clean this file + create custom hook + please look at the loading states
 function Categories() {
   const location = useLocation();
   const categoris = location.state.data.toLowerCase();
@@ -40,7 +41,7 @@ function Categories() {
           });
         });
         setTimeout(() => {
-          setLoadin(true)
+          setLoadin(true);
         }, 2000);
         setSearchData(data);
 
@@ -52,50 +53,46 @@ function Categories() {
     };
 
     fetchData();
-    
   }, []);
-  console.log(searchData)
+  console.log(searchData);
   return (
     <div className="categoreis">
       <img className="containerImag" src={titelImage} alt="" />
-       {!loadin?<Loding/>:(
+      {!loadin ? (
+        <Loding />
+      ) : (
+        <div className="main_cat">
+          <img className="containerImag" src={titelImage} alt="" />
+          {fomedis ? (
+            <button className="createBtn btnactiv" onClick={() => setFomedis(!fomedis)}>
+              X
+            </button>
+          ) : (
+            <button className="createBtn" onClick={() => setFomedis(!fomedis)}>
+              Creat new data
+            </button>
+          )}
 
-      <div className="main_cat">
-        <img className="containerImag" src={titelImage} alt="" />
-        {fomedis ? (
-          <button
-            className="createBtn btnactiv"
-            onClick={() => setFomedis(!fomedis)}
-          >
-            X
-          </button>
-        ) : (
-          <button className="createBtn" onClick={() => setFomedis(!fomedis)}>
-            Creat new data
-          </button>
-        )}
-
-        
-        <Formes
-          categoryData={[]}
-          category={categoris}
-          formdis={fomedis}
-          setSearchData={setSearchData}
-          searchData={searchData}
-          setFomedis={setFomedis}
-        />
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <Table
-            searchData={searchData}
-            setSearchData={setSearchData}
+          <Formes
+            categoryData={[]}
             category={categoris}
             formdis={fomedis}
+            setSearchData={setSearchData}
+            searchData={searchData}
+            setFomedis={setFomedis}
           />
-        )}
-      </div>
-       )} 
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <Table
+              searchData={searchData}
+              setSearchData={setSearchData}
+              category={categoris}
+              formdis={fomedis}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }
