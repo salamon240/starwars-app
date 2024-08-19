@@ -23,12 +23,6 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ searchData, category, formdis, setSearchData }) => {
-const Table: React.FC<TableProps> = ({
-  searchData,
-  category,
-  formdis,
-  setSearchData,
-}) => {
   const [state, setState] = useState(false);
 
   const categoryKeys: CategoryKeys = {
@@ -56,9 +50,9 @@ const Table: React.FC<TableProps> = ({
     return CATEGORIES_KEYS[category].map((key) => <th key={key}>{formatHeader(key)}</th>);
   };
 
-
   const handleDelete = (index: number) => {
     const updatedData = searchData.filter((_, i) => i !== index);
+    // Please fix this type
     setSearchData(updatedData as any);
     setState(!state); // Toggle state to trigger re-render if needed
   };
