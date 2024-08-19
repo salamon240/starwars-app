@@ -6,6 +6,9 @@
     align-items: center;
     padding: 1rem;
     background-color: black;
+    position: fixed;
+    z-index: 2;
+
 }
 img{
     height: 60px;

@@ -1,17 +1,24 @@
-
+body{
+    background: none;
+}
 .Profile{
     display: flex;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     justify-content: center;
     position: absolute;
-    background: url("../../images/josue-as-_nprTIIwSk4-unsplash.jpg");
-    background-size: cover;
+    background: url("../../images/pexels-mareesettons-4719340.jpg");
     background-position: center;
+    background-size: cover;
 
-    
+    margin: auto;
+
+}
+.proH1{
+    padding-bottom: 10px;
 }
 .infro{
+    padding: 10px 0;
     margin-left: 20px;
     text-align: center;
     font-size: large;
@@ -19,24 +26,20 @@
 
 }
 .mainProfile{
+
     padding-top: 25px;
     background-color: white;
     position: absolute;
     flex-wrap: wrap;
     z-index: 1;
-    width: 600px;
-    max-height: 700px;
+    padding: 2%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 100%;
-    margin-top: 50px;
+    margin-top: 6rem;
     border-radius:8px ;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
-.imgProfile {
-    height: 300px;
-    border-radius: 5px;
-}
+
 .imagpro{
     height: 300px;
     border-radius: 5px;
@@ -46,12 +49,7 @@
 
 @media screen and (max-width : 718px) {
 
-    .mainProfile{
-        max-width: 400px;
-        max-height: 600px;
-        padding-left: 10%;
-        padding-right: 10%;
-    }
+  
     .imagpro{
         height: 200px;
         border-radius: 5px;
@@ -59,13 +57,7 @@
 }
 @media screen and (max-width : 414px) {
 
-    .mainProfile{
-        max-width: 300px;
-        max-height: 500px;
-        padding-left: 10%;
-        padding-right: 10%;
-    
-    }
+ 
     .imagpro{
         height: 150px;
         border-radius: 5px;

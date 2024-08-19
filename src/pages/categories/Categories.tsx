@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { fetchAllViewResults } from "./../../api/ViewAll";
 import { useLocation } from "react-router-dom";
-import Table from "../../components/table/Table";
 import { FetchFilme, FetchPeople, FetchPlanets } from "../../api/categorisApi";
 import Formes from "../../components/frome/Formes";
 import "./categories.css";
 import titelImage from "../../images/josue-as-_nprTIIwSk4-unsplash.jpg";
 import Loding from "../../components/loding/Loding";
 import { Pepole, Filme, Planet } from "../../common/types/interface";
+import Table from "../../components/table/Table";
 
 type CategoryData = Pepole[] | Filme[] | Planet[];
 
@@ -40,12 +39,14 @@ function Categories() {
             keySet.add(key);
           });
         });
+
+        setSearchData(data);
+        setIsLoading(false);
+
+        // Mocking a delay to simulate loading
         setTimeout(() => {
           setLoadin(true);
         }, 2000);
-        setSearchData(data);
-
-        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
         setIsLoading(false); // Set isLoading to false in case of error
@@ -53,8 +54,8 @@ function Categories() {
     };
 
     fetchData();
-  }, []);
-  console.log(searchData);
+  }, [categoris]);
+
   return (
     <div className="categoreis">
       <img className="containerImag" src={titelImage} alt="" />
@@ -62,14 +63,13 @@ function Categories() {
         <Loding />
       ) : (
         <div className="main_cat">
-          <img className="containerImag" src={titelImage} alt="" />
           {fomedis ? (
             <button className="createBtn btnactiv" onClick={() => setFomedis(!fomedis)}>
               X
             </button>
           ) : (
             <button className="createBtn" onClick={() => setFomedis(!fomedis)}>
-              Creat new data
+              Create new data
             </button>
           )}
 
@@ -81,6 +81,7 @@ function Categories() {
             searchData={searchData}
             setFomedis={setFomedis}
           />
+
           {isLoading ? (
             <p>Loading...</p>
           ) : (

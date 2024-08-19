@@ -1,26 +1,20 @@
+
 .categoreis{
-    height: 100%;
+    
+   min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    
-}
-.containerImag{
-    height: 100%;
-    width: 100%;
+    background-image: url('../../images/pexels-mareesettons-4719340.jpg');
+     background-size: cover;
     position: absolute;
-    object-fit: cover;
-    
 }
-.main_cat{
-display: flex;
-width: 900px;
-align-items: center;
 
+.main_cat{
 position: absolute;
 width: 100%;
+height: 100vh;
 display: flex;
 flex-direction: column;
 opacity: 0;
