@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { fetchAllViewResults } from "./../../api/ViewAll";
 import { useLocation } from "react-router-dom";
-import Table from "../../components/table/Table";
 import { FetchFilme, FetchPeople, FetchPlanets } from "../../api/categorisApi";
-import { Filme, Pepole, Planet } from "../../components/interface/interface";
 import Formes from "../../components/frome/Formes";
 import "./categories.css";
 import titelImage from "../../images/josue-as-_nprTIIwSk4-unsplash.jpg";
 import Loding from "../../components/loding/Loding";
+import { Pepole, Filme, Planet } from "../../common/types/interface";
+import Table from "../../components/table/Table";
 
 type CategoryData = Pepole[] | Filme[] | Planet[];
 
+// TODO : Clean this file + create custom hook + please look at the loading states
 function Categories() {
   const location = useLocation();
   const categoris = location.state.data.toLowerCase();
@@ -39,12 +39,14 @@ function Categories() {
             keySet.add(key);
           });
         });
-        setTimeout(() => {
-          setLoadin(true)
-        }, 2000);
-        setSearchData(data);
 
+        setSearchData(data);
         setIsLoading(false);
+
+        // Mocking a delay to simulate loading
+        setTimeout(() => {
+          setLoadin(true);
+        }, 2000);
       } catch (error) {
         console.error("Error fetching data:", error);
         setIsLoading(false); // Set isLoading to false in case of error
@@ -52,48 +54,46 @@ function Categories() {
     };
 
     fetchData();
-    
-  }, []);
-  console.log(searchData)
+  }, [categoris]);
+
   return (
     <div className="categoreis">
-       {!loadin?<Loding/>:(
+      <img className="containerImag" src={titelImage} alt="" />
+      {!loadin ? (
+        <Loding />
+      ) : (
+        <div className="main_cat">
+          {fomedis ? (
+            <button className="createBtn btnactiv" onClick={() => setFomedis(!fomedis)}>
+              X
+            </button>
+          ) : (
+            <button className="createBtn" onClick={() => setFomedis(!fomedis)}>
+              Create new data
+            </button>
+          )}
 
-      <div className="main_cat">
-        {fomedis ? (
-          <button
-            className="createBtn btnactiv"
-            onClick={() => setFomedis(!fomedis)}
-          >
-            X
-          </button>
-        ) : (
-          <button className="createBtn" onClick={() => setFomedis(!fomedis)}>
-            Creat new data
-          </button>
-        )}
-             
-        
-        <Formes
-          categoryData={[]}
-          category={categoris}
-          formdis={fomedis}
-          setSearchData={setSearchData}
-          searchData={searchData}
-          setFomedis={setFomedis}
-        />
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <Table
-            searchData={searchData}
-            setSearchData={setSearchData}
+          <Formes
+            categoryData={[]}
             category={categoris}
             formdis={fomedis}
+            setSearchData={setSearchData}
+            searchData={searchData}
+            setFomedis={setFomedis}
           />
-        )}
-      </div>
-       )} 
+
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <Table
+              searchData={searchData}
+              setSearchData={setSearchData}
+              category={categoris}
+              formdis={fomedis}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }
