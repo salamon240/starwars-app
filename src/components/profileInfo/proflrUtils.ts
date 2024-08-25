@@ -1,14 +1,14 @@
 import React from "react";
 // TODO : Clean this file
 import { Pepole, Filme, Planet } from "../../common/types/interface";
+import { CategoryKeys, DataItem } from "../../common/types/mainTyps";
 
-type CategoryKeys = {
-  people: (keyof Pepole)[];
-  films: (keyof Filme)[];
-  planets: (keyof Planet)[];
-};
 
-type DataItem = Pepole | Filme | Planet;
+
+export interface ProfileProps {
+  propsInfo: [];
+  category: "people" | "films" | "planets"; // String literal type for category
+}
 
 export const renderProfil = (
   category: "people" | "films" | "planets",

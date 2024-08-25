@@ -6,6 +6,7 @@ export interface Pepole {
   skin_color: string;
   birth_year: string;
   url: string;
+  id:number
 }
 
 export interface Filme {
@@ -14,6 +15,8 @@ export interface Filme {
   producer: string;
   release_date: string;
   url: string;
+  id:number
+
 }
 
 export interface Planet {
@@ -25,4 +28,6 @@ export interface Planet {
   terrain: string;
   gravity: string;
   url: string;
+  id:number
+
 }

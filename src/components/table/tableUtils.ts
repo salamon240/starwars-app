@@ -1,13 +1,20 @@
 import React from "react";
 import { Pepole, Filme, Planet } from "../../common/types/interface";
+import {
+  CategoryData,
+  CategoryKeys,
+  DataItem,
+} from "../../common/types/mainTyps";
+import { CATEGORIES_KEYS } from "../../common/consts";
+import Categories from "../../pages/categories/Categories";
 
-type CategoryKeys = {
-  people: (keyof Pepole)[];
-  films: (keyof Filme)[];
-  planets: (keyof Planet)[];
-};
-
-type DataItem = Pepole | Filme | Planet;
+export interface TableProps {
+  setSearchData: React.Dispatch<React.SetStateAction<CategoryData>>;
+  formdis: boolean;
+  loading:boolean;
+  searchData: DataItem[];
+  category: "people" | "films" | "planets";
+}
 
 export const renderRowCells = (
   category: "people" | "films" | "planets",
@@ -25,12 +32,14 @@ export const renderRowCells = (
       return null;
   }
 };
+
 const renderCells = (
   keys: (keyof Pepole | keyof Filme | keyof Planet)[],
-  item: Pepole | Filme | Planet
+  item: DataItem
 ) => {
   return keys.map((key) => {
     const cellValue = (item as any)[key];
     return React.createElement("td", { key, "data-cell": key }, cellValue);
   });
 };
+ 

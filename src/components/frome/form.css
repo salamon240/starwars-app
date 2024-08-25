@@ -61,7 +61,8 @@ color:  gold;
 
 .activs{
   display: flex;
-  margin: 145px auto;
+  margin: 14px auto;
+
 }
 @media screen and (max-width: 720px) {
   .frome {
@@ -74,6 +75,7 @@ color:  gold;
   }
   .activs{
     left: 0;
+    top: 38px;
     margin: 0px auto;
 }
 

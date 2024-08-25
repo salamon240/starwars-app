@@ -63,6 +63,29 @@
 }
 
 
+.serchMain{
+    width: 80%;
+}
+}
+@media screen and (max-width : 375px) {
+
+    h2{
+        font-size: 11px;
+    }
+    .video{
+     height: 100vh;
+    width: 100%;
+    position: absolute;
+    object-fit:cover;
+    
+
+}
+.main img{
+    height: 50px;
+   
+}
+
+
 }
 .serchMain{
     width: 80%;

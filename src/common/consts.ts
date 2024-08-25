@@ -1,7 +1,7 @@
-import { CategoryKeys } from "../components/frome/types";
+import { CategoryKeys } from "../common/types/mainTyps";
 
 export const CATEGORIES_KEYS: CategoryKeys = {
-  people: ["name", "height", "mass", "hair_color", "skin_color", "birth_year"],
+  people:  ["name", "height", "mass", "hair_color", "skin_color", "birth_year"],
   films: ["title", "director", "producer", "release_date"],
   planets: [
     "name",
@@ -13,3 +13,4 @@ export const CATEGORIES_KEYS: CategoryKeys = {
     "gravity",
   ],
 };
+

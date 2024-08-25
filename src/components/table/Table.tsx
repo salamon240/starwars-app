@@ -1,69 +1,56 @@
 import React, { useEffect, useState } from "react";
-import { Pepole, Filme, Planet } from "../../common/types/interface";
-import { renderRowCells } from "./tableUtils"; // Adjust the path accordingly
+import { renderRowCells, TableProps } from "./tableUtils"; // Adjust the path accordingly
 import "./table.css";
 import { CATEGORIES_KEYS } from "../../common/consts";
 import { Link } from "react-router-dom";
-import { CategoryData } from "../frome/types";
 import { formatHeader } from "../../common/utils";
+import { useToggle } from "../../common/toggole";
+import Loding from "../loding/Loding";
 
-type CategoryKeys = {
-  people: (keyof Pepole)[];
-  films: (keyof Filme)[];
-  planets: (keyof Planet)[];
-};
+const Table: React.FC<TableProps> = ({
+  searchData,
+  category,
+  formdis,
+  setSearchData,
+  loading,
+}) => {
+  const [isToggled, toggle] = useToggle();
 
-type DataItem = Pepole | Filme | Planet;
-
-interface TableProps {
-  setSearchData: React.Dispatch<React.SetStateAction<CategoryData>>;
-  formdis: boolean;
-  searchData: DataItem[];
-  category: "people" | "films" | "planets";
-}
-
-const Table: React.FC<TableProps> = ({ searchData, category, formdis, setSearchData }) => {
-  const [state, setState] = useState(false);
-
-  const categoryKeys: CategoryKeys = {
-    people: ["name", "height", "mass", "hair_color", "skin_color", "birth_year"],
-    films: ["title", "director", "producer", "release_date"],
-    planets: [
-      "name",
-      "rotation_period",
-      "orbital_period",
-      "diameter",
-      "climate",
-      "terrain",
-      "gravity",
-    ],
-  };
+ 
 
   useEffect(() => {
-    if (state) {
+    if (isToggled) {
       renderTableHeaders();
       renderTableRows();
     }
-  }, [state]);
+  }, [isToggled]);
+
+  if (!Array.isArray(searchData)) {
+    return <p>Error: Invalid data format</p>; }
 
   const renderTableHeaders = () => {
-    return CATEGORIES_KEYS[category].map((key) => <th key={key}>{formatHeader(key)}</th>);
+    return CATEGORIES_KEYS[category].map((key) => (
+      <th key={key}>{formatHeader(key)}</th>
+    ));
   };
 
   const handleDelete = (index: number) => {
-    const updatedData = searchData.filter((_, i) => i !== index);
+    const updatedData = searchData.filter(
+      (searchData) => searchData.id !== index
+    );
+   
     // Please fix this type
     setSearchData(updatedData as any);
-    setState(!state); // Toggle state to trigger re-render if needed
+    toggle(); // Toggle state to trigger re-render if needed
   };
 
   const renderTableRows = () => {
-    return searchData.map((item, index) => (
-      <tr key={index}>
+    return searchData.map((item) => (
+      <tr key={item.id}>
         {renderRowCells(category, item, CATEGORIES_KEYS)}
         <td>
           <div className="btn">
-            <button onClick={() => handleDelete(index)} className="tablebtn">
+            <button onClick={() => handleDelete(item.id)} className="tablebtn">
               Delete
             </button>
             <button className="tablebtn">Edit</button>
@@ -72,12 +59,14 @@ const Table: React.FC<TableProps> = ({ searchData, category, formdis, setSearchD
       </tr>
     ));
   };
-
+  console.log(searchData)
   return (
     <div className={!formdis ? "wrapper" : "wrapper tatactiv"}>
-      <div className="capton">{category.charAt(0).toUpperCase() + category.slice(1)}</div>
+      <div className="capton">
+        {category.charAt(0).toUpperCase() + category.slice(1)}
+      </div>
 
-      {searchData.length !== 0 ? (
+      {searchData.length >= 1 && !loading? (
         <table>
           <thead className="heade">
             <tr>{renderTableHeaders()}</tr>

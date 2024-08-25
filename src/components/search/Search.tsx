@@ -4,26 +4,11 @@ import { fetchSearchResults } from "../../api/ServisApi";
 import { CiSearch } from "react-icons/ci";
 import { CATEGORIES } from "./consts";
 import { SearchProps } from "./types";
+import useSearch from "./useSearch";
 
-const Search: FC<SearchProps> = ({ setSearchResults }) => {
-  const [searchInput, setSearchInput] = useState("");
+const Search: FC<{ setSearchResults: (results: any[]) => void }> = ({ setSearchResults }) => {
+  const {searchInput,setSearchInput}= useSearch(setSearchResults)
 
-  useEffect(() => {
-    if (searchInput.trim() === "") {
-      setSearchResults([]);
-      return;
-    }
-    const fetchResults = async () => {
-      try {
-        const results = await fetchSearchResults(searchInput, CATEGORIES);
-        setSearchResults(results);
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-      }
-    };
-
-    fetchResults();
-  }, [searchInput]);
   return (
     <div className="heder">
       <div className="search">

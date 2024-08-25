@@ -1,13 +1,6 @@
-import { Pepole, Filme, Planet } from "../../common/types/interface";
+import { CategoryData, DataItem } from "../../common/types/mainTyps";
 
-export type CategoryData = Pepole[] | Filme[] | Planet[];
 
-export type CategoryKeys = {
-  people: (keyof Pepole)[];
-  films: (keyof Filme)[];
-  planets: (keyof Planet)[];
-};
-export type DataItem = Pepole | Filme | Planet;
 export interface TableProps {
   formdis: boolean;
   searchData: any;
