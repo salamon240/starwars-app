@@ -5,13 +5,11 @@ import {
   CategoryKeys,
   DataItem,
 } from "../../common/types/mainTyps";
-import { CATEGORIES_KEYS } from "../../common/consts";
-import Categories from "../../pages/categories/Categories";
 
 export interface TableProps {
   setSearchData: React.Dispatch<React.SetStateAction<CategoryData>>;
   formdis: boolean;
-  loading:boolean;
+  loading: boolean;
   searchData: DataItem[];
   category: "people" | "films" | "planets";
 }
@@ -42,4 +40,3 @@ const renderCells = (
     return React.createElement("td", { key, "data-cell": key }, cellValue);
   });
 };
- 

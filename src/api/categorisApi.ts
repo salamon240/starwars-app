@@ -32,7 +32,7 @@ export const FetchFilme = async (categoris: string) => {
     const formattedData = results.map((item: Filme) => ({
       title: item.title,
       director: item.director,
-      producer: item.producer, // Include other optional fields if needed
+      producer: item.producer, 
       release_date: item.release_date,
       id:generateUniqueId()
 

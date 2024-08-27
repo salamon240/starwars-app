@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { renderRowCells, TableProps } from "./tableUtils"; // Adjust the path accordingly
 import "./table.css";
 import { CATEGORIES_KEYS } from "../../common/consts";
 import { Link } from "react-router-dom";
 import { formatHeader } from "../../common/utils";
 import { useToggle } from "../../common/toggole";
-import Loding from "../loding/Loding";
+import { CategoryData } from "../../common/types/mainTyps";
 
 const Table: React.FC<TableProps> = ({
   searchData,
@@ -16,8 +16,6 @@ const Table: React.FC<TableProps> = ({
 }) => {
   const [isToggled, toggle] = useToggle();
 
- 
-
   useEffect(() => {
     if (isToggled) {
       renderTableHeaders();
@@ -26,7 +24,8 @@ const Table: React.FC<TableProps> = ({
   }, [isToggled]);
 
   if (!Array.isArray(searchData)) {
-    return <p>Error: Invalid data format</p>; }
+    return <p>Error: Invalid data format</p>;
+  }
 
   const renderTableHeaders = () => {
     return CATEGORIES_KEYS[category].map((key) => (
@@ -38,9 +37,9 @@ const Table: React.FC<TableProps> = ({
     const updatedData = searchData.filter(
       (searchData) => searchData.id !== index
     );
-   
+
     // Please fix this type
-    setSearchData(updatedData as any);
+    setSearchData(updatedData as CategoryData);
     toggle(); // Toggle state to trigger re-render if needed
   };
 
@@ -59,14 +58,14 @@ const Table: React.FC<TableProps> = ({
       </tr>
     ));
   };
-  console.log(searchData)
+
   return (
     <div className={!formdis ? "wrapper" : "wrapper tatactiv"}>
       <div className="capton">
         {category.charAt(0).toUpperCase() + category.slice(1)}
       </div>
 
-      {searchData.length >= 1 && !loading? (
+      {searchData.length >= 1 && !loading ? (
         <table>
           <thead className="heade">
             <tr>{renderTableHeaders()}</tr>

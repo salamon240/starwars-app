@@ -22,7 +22,7 @@ function SearchPage() {
           <img src={titelImage} alt="titel logo" />
           <div className="serchMain">
           
-          <h2>Search for your favorite characters and places from the Star Wars film series</h2>
+          <h2>Search for your favorite characters and places from the Star Wars film serie</h2>
             <Search  setSearchResults={setSearchResults}/>
           
             <SearchList searchProps={searchResults}/>

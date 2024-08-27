@@ -12,8 +12,9 @@ function useCategories() {
   const [loading, setLoading] = useToggle();
   const [fomedis, setFomedis] = useToggle();
   
+
   useEffect(() => {
-    setLoading();
+    
     const fetchData = async () => {
       console.log(searchData)
       try {

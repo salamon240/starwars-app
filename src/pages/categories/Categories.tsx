@@ -49,7 +49,7 @@ function Categories() {
           />
 
           {loading ? (
-            <p>Loading...</p>
+            <h1>Loading...</h1>
           ) : (
             <Table
             loading={loading}
